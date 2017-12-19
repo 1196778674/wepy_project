@@ -9,7 +9,7 @@
         <button type="button" bindtap="addList">add</button>
     </view>
     <view class="list">
-        <view  wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">{{index}}|{{item.name}}</view>
+        <view  wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">{{index+1}}|{{item.name}}<span bindtap="removeItem" data-wpyremoveitem-a="{{index}}">X</span></view>
     </view>
 
   </view>
