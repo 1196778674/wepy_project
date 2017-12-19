@@ -4,9 +4,14 @@
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
-    <view>{{num}}</view>
-    <button @tap="add">add</button>
-    <button @tap="rem">rem</button>
+    <view>
+        <input class="input" bindinput="setTxt" value="{{txt}}" type="text" name="">
+        <button type="button" @tap="addList">add</button>
+    </view>
+    <view class="list">
+        <view wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">{{index}}|{{item.name}}</view>
+    </view>
+
   </view>
 </template>
 
@@ -20,7 +25,9 @@
 
     data = {
       userInfo: {},
-      num: 0
+      num: 0,
+      txt: '',
+      list: [{id: 0, name: 'liufei'}]
     }
 
     computed = {
@@ -28,11 +35,16 @@
     }
 
     methods = {
-        add () {
-            this.num++
+        setTxt (e) {
+            this.txt = e.detail.value
         },
-        rem () {
-            this.num--
+        addList () {
+            if (!this.txt) {
+                return;
+            }
+            var item = {id: this.num, name: this.txt};
+            this.list.push(item);
+            this.txt = ''
         }
     }
 
@@ -67,5 +79,8 @@
 
   .userinfo-nickname {
     color: #aaa;
+  }
+  .input{
+    border: 1px solid #ccc;
   }
 </style>
