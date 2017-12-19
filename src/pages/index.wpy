@@ -1,0 +1,71 @@
+<template>
+  <view class="container">
+    <view class="userinfo">
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
+    </view>
+    <view>{{num}}</view>
+    <button @tap="add">add</button>
+    <button @tap="rem">rem</button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'wepy'
+    }
+
+    data = {
+      userInfo: {},
+      num: 0
+    }
+
+    computed = {
+
+    }
+
+    methods = {
+        add () {
+            this.num++
+        },
+        rem () {
+            this.num--
+        }
+    }
+
+    events = {
+
+    }
+
+    onLoad() {
+      let self = this
+      this.$parent.getUserInfo(function (userInfo) {
+        if (userInfo) {
+          self.userInfo = userInfo
+        }
+        self.$apply()
+      })
+    }
+  }
+</script>
+
+<style lang="less">
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+  }
+
+  .userinfo-nickname {
+    color: #aaa;
+  }
+</style>

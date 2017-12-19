@@ -1,0 +1,10 @@
+
+  <view class="container">
+    <view class="userinfo">
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
+    </view>
+    <view>{{num}}</view>
+    <button bindtap="add">add</button>
+    <button bindtap="rem">rem</button>
+  </view>
